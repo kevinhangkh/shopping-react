@@ -3,20 +3,22 @@ import Counter from "./counter";
 
 class Counters extends React.Component {
   render() {
+    const { onReset, counters, onIncrement, onDelete } = this.props;
+
     return (
       <div>
-        <button className="btn btn-secondary m-2" onClick={this.props.onReset}>
+        <button className="btn btn-secondary m-2" onClick={onReset}>
           Reset
         </button>
-        {this.props.counters.map((counter) => (
+        {counters.map((counter) => (
           <Counter
             key={counter.id}
             // value={counter.value}
             // id={counter.id}
             // We can just pass counter object which contains all the properties we want such as value and id
             counter={counter}
-            onIncrement={this.props.onIncrement}
-            onDelete={this.props.onDelete} //Handling the delete event here because the state is in this component
+            onIncrement={onIncrement}
+            onDelete={onDelete} //Passing the delete event to parent because the state is in parent component
           />
         ))}
       </div>
